@@ -188,16 +188,16 @@ public class GUI extends javax.swing.JFrame {
         else{
             target_dir = dir;
         }
-        
+        //creates array of all files in the dir
         String textfile;
         File dir = new File(target_dir);
         File[] files = dir.listFiles();
-        
+        //runs through the files looking for the keyword
             for (File textfiles : files) {
-
+                //This sets what type of file the program looks for, it could be changed to look for other file types.
                 if (textfiles.isFile() && textfiles.getName().endsWith(".java")) {
                     jTextArea1.append("Found and Checked " +textfiles.getName() + "\n");
-
+                    //creates temp file that will be edited and then replace the original
                 BufferedReader inputStream = null;
                 PrintWriter pw = null;
                 File tmp = File.createTempFile("tmp", "");
@@ -210,7 +210,7 @@ public class GUI extends javax.swing.JFrame {
                     while ((line = inputStream.readLine()) != null) {
                         
                         if (!line.trim().startsWith(lineToRemove)) {
-                        
+                        //this is the writing of the file, it wont happen if the keyword is found.
                             pw.println(line);
                             pw.flush();
                           }
@@ -246,13 +246,11 @@ public class GUI extends javax.swing.JFrame {
     private void DirectoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DirectoryActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DirectoryActionPerformed
-
+    //sets the directory and tells you which files are in that location.
     private void SetDirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SetDirActionPerformed
+        
         dir = Directory.getText();
-            //clears the text box.
         jTextArea1.setText("");
-        
-        
         try{ 
         
         String target_dir; 
